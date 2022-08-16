@@ -1,0 +1,301 @@
+$fontMontserrat: "font-family: 'Montserrat', sans-serif"
+$fontLibre: "font-family: 'Libre Baskerville', serif"
+
+$colorBrown: #996633
+$colorRed: #CC0000
+$colorDarkGray: #666666
+$colorGray: #bebebe
+$colorLightGray: #e4e4e4
+$colorPaper: #e8d4a3
+
+@mixin flex__jcsb
+    display: flex
+    justify-content: space-between
+
+// header block
+.header
+    display: flex
+    font-family: $fontLibre
+
+
+    &__content
+        flex-grow: 1
+
+    &__logo-inner
+        display: flex
+        justify-content: center
+
+    &__logo
+        padding: 20px 0 5px
+        text-align: center
+        font-weight: 700
+        line-height: 1
+        display: inline-block
+        margin: 0 auto
+
+
+        &-top
+            color: $colorRed
+            font-size: 123px
+            line-height: 110px
+            letter-spacing: -3px
+            text-shadow: 5px 3px 8px rgba(0, 0, 0, .4)
+
+
+        &-bottom
+            border-top: 2px solid #000
+            border-bottom: 1px solid #000
+            text-transform: uppercase
+            padding: 2px
+            font-size: 25px
+            text-shadow: 6px 4px 8px rgba(0, 0, 0, .5)
+
+    &__nav
+        display: flex
+        position: relative
+        margin-top: 10px
+        width: 95%
+
+        &-link
+            padding: 3px 30px
+            line-height: 1.2
+            background: $colorPaper
+            border: 2px solid #000
+            border-radius: 10px 10px 0 0
+            position: relative
+            box-shadow: inset 3px 4px 2px #f0e3c2
+            flex-grow: 1
+            text-align: center
+
+            &:first-child
+                border-top-left-radius: 0
+                border-left: none
+                border-bottom: none
+
+            &.active
+                background: $colorRed
+                box-shadow: none
+                color: #fff
+
+        @for $i from 1 through 10
+            .header__nav-link:nth-child(#{$i + 1})
+                margin-left: #{$i * -2} + px
+                z-index: #{$i + 20}
+
+    &__search
+        @include flex__jcsb
+        padding: 10px 20px
+        background: $colorRed
+
+        .textform
+            margin: 0
+
+        select
+            min-width: 180px
+            height: 32px
+            color: #000
+
+    &__info
+        font-family: $fontMontserrat
+        min-width: 8%
+        max-width: 8%
+        background: #000
+        color: #fff
+        display: flex
+        flex-direction: column
+        justify-content: center
+        padding: 5px
+
+        &-temperature
+            span
+                font-size: 24px
+                font-weight: bold
+        &-time
+            font-size: 12px
+            color: $colorGray
+
+// wrapper
+.page
+    height: 1px
+
+.container
+    min-height: 100%
+    height: 1px
+    display: flex
+    flex-direction: column
+
+
+.wrapper
+    @include flex__jcsb
+    flex-grow: 1
+
+// sidebar block
+.sidebar
+    width: 10%
+    height: 100%
+    background: $colorRed
+    padding: 20px
+    border-top-right-radius: 10px
+    box-shadow: inset -2px 0 6px #000
+    display: flex
+    flex-direction: column
+
+
+    &__image
+        width: 80%
+        margin: 0 auto
+        flex-grow: 1
+
+        img
+            width: 100%
+            height: auto
+            box-shadow: -2px -1px 3px #000, 2px 1px 5px $colorGray
+
+    &__nav
+        text-align: right
+        color: #F5EBD9
+        font-weight: 700
+        margin-top: 30px
+        flex-grow: 1
+        display: flex
+        flex-direction: column
+        justify-content: center
+
+        &-link
+            &:hover
+                text-decoration: underline
+                color: rgba(255, 255, 255, .7)
+            &::after
+                content: ""
+                display: block
+                width: 8px
+                height: 8px
+                border-radius: 50%
+                background: #F5EBD9
+                margin: 8px 0 8px auto
+            &:last-child::after
+                display: none
+    &__nav-bottom
+        margin-top: 40px
+        flex-grow: 1
+        display: flex
+        flex-direction: column
+        justify-content: flex-end
+        font-size: 12px
+
+        .sidebar-nav__bottom-link
+            color: #F5EBD9
+            text-align: right
+            margin-top: 20px
+
+            &:hover
+                text-decoration: underline
+                color: rgba(255, 255, 255, .7)
+
+
+// content block
+.content
+    height: 100%
+    flex-grow: 1
+    padding: 40px
+    display: flex
+    justify-content: space-between
+
+    &__news
+        width: 30%
+        padding-right: 20px
+
+        &-header
+            display: inline-block
+            text-align: center
+            line-height: 1
+
+        .news-header
+            &__logo
+                font-size: 40px
+                font-family: $fontLibre
+                font-weight: 700
+                margin-left: -30px
+
+                span
+                    display: block
+                    color: $colorRed
+                    font-size: 60px
+                    margin-top: -15px
+                    margin-left: 30px
+
+            &__time
+                text-transform: uppercase
+                color: $colorDarkGray
+                font-size: 14px
+
+        &-post
+            margin-top: 60px
+
+            .content-news__post
+                &-suptitle
+                    text-transform: uppercase
+                    color: $colorDarkGray
+                    font-size: 14px
+
+
+                &-title
+                    font-family: $fontLibre
+                    font-size: 24px
+                    color: $colorBrown
+                    font-weight: 700
+
+                &-textblock
+                    padding: 20px
+                    background: #fff
+                    border-radius: 10px
+                    box-shadow: inset 4px 3px 6px $colorGray, inset -2px -1px 4px $colorLightGray
+                    margin-top: 5px
+                    margin-bottom: 20px
+
+                &-text
+                    margin-top: 10px
+                    font-weight: 500
+                    font-size: 14px
+
+                    a
+                        color: $colorRed
+                        display: inline
+
+
+    &__posts
+        width: 70%
+        padding-left: 20px
+
+
+
+// sidephoto block
+
+.sidephoto
+    min-width: 8%
+    max-width: 8%
+    height: 100%
+    background-image: url(https://picsum.photos/id/318/4000)
+    background-repeat: no-repeat
+    background-position: 50% 0
+    background-size: auto 100%
+
+// pathbar block
+.pathbar
+    font-family: $fontLibre
+    padding: 5px 10px
+    background: $colorPaper
+    font-size: 12px
+    box-shadow: 0px 6px 8px $colorGray
+
+    span
+        margin-left: 5px
+
+// developedby block
+.developedby
+    width: 100%
+    padding: 5px
+    background: $colorPaper
+    font-weight: 700
+    text-align: center
+    padding-right: 10%
